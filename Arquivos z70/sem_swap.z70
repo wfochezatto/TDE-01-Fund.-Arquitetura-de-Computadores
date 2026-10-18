@@ -1,31 +1,31 @@
-.text
-    mov a, [v0]
-    mov b, [v1]
-    cmp a, b
-    js  p1
-    mov [v0], b
-    mov [v1], a
-p1:
-    mov a, [v1]
-    mov b, [v2]
-    cmp a, b
-    js  p2
-    mov [v1], b
-    mov [v2], a
-p2:
-    mov a, [v0]
-    mov b, [v1]
-    cmp a, b
-    js  p3
-    mov [v0], b
-    mov [v1], a
-p3:
-    hlt
+.text		; comparação 1
+    mov a, [v0]	; recebe o valor de 80H
+    mov b, [v1]	; recebe o valor de 81H
+    cmp a, b	; calcula a-b
+    js  comp1	; se a<b já está em ordem, ele pula pra próxima comparação
+    mov [v0], b	; gravação cruzada
+    mov [v1], a	; gravação cruzada
+comp1:		; comparação 2
+    mov a, [v1]	; recebe o valor de 81H
+    mov b, [v2]	; recebe o valor de 82H
+    cmp a, b	; calcula a-b
+    js  comp2	; se a<b já está em ordem, ele pula pra próxima comparação
+    mov [v1], b	; gravação cruzada
+    mov [v2], a	; gravação cruzada
+comp2:		; comparação 3
+    mov a, [v0]	; recebe o valor de 80H
+    mov b, [v1]	; recebe o valor de 81H
+    cmp a, b	; calcula a-b
+    js  comp3	; se a<b já está em ordem, ele pula pro fim do programa
+    mov [v0], b	; gravação cruzada
+    mov [v1], a	; gravação cruzada
+comp3:
+    hlt		; termina o programa
 
 .data
 org 0x80
-v0: db 16
+v0: db 16	; valor 1 no endereço 80H
 org 0x81
-v1: db 8
+v1: db 4	; valor 2 no endereço 81H
 org 0x82
-v2: db 4
+v2: db 8	; valor 3 no endereço 82H

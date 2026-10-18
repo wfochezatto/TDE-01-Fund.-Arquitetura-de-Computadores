@@ -1,0 +1,3 @@
+O SWAP custa 6 ciclos e acrescenta uma instrução por troca, como tiveram duas trocas, 12 ciclos e 2 instruções a mais
+com_swap 18 instruções e 128 ciclos
+sem_swap 16 instruções e 116 ciclos
